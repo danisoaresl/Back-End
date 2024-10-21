@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <meta charset="UTF-8" />
+    <title>Validar Formulario</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            }
+            button[type="submit"]:hover{
+                background-color: #0056b3;
+            }
+    </style>    
+
+    <body>
+        <div class="container">
+            <h1>Validar Formulario</h1>
+            <form id="form1" action="/submit" method="post">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Email">
+
+                    <label for="endereco">Endereco</label>
+                    <textarea type="endereco" id="endereco" name="endereco" required></textarea>
+                    
+                    <label for="dob">Ano de nascimento</label>
+                    <input id="date" name="dob" required />
+                    
+                    <label for="genero">Genero</label>
+                    <input type="radio" id="masculino" name="genero" value="masculino" /> 
+                    <label for="masculino1">Masculino</label>
+                    <button type="submit">Enviar</button>
+            </form>
+
+            <div class="form-container">
+            <h1>Validar Formulario</h1>
+            <form id="form2" action="/submit" method="post">
+                    <label for="dob">Ano de nascimento</label>
+                    <input type="date" id="dob2" name="dob" required />
+
+                    <label for="genero">Genero</label>
+                    <input type="radio" id="masculino" name="genero" value= "masculino" />
+                    <label for="masculino">Masculino</label>
+                    <input type="radio" id="feminino" name="genero" value="feminino" />
+                    <label for="feminino">Feminino</label>
+                    <input type="radio" id="outro" name="genero" value="outro" /> 
+                    <label for="outro">Outro</label>
+                    <input type="radio" id="nulo" name="genero" value="nulo" />
+                    <label for="nulo">Prefiro nao responder</label>
+
+                    <label for="pais">Pais</label>
+                    <input type="text" id="pais" name="pais" required />
+                    <div class="g-recaptcha" data-sitekey={{site_key}}></div>
+                    </br>
+                    <button type="submit">Enviar</button>
+            </form>
+
+                    </div>
+            <div id="popup" class="popup">
+                <span id="popup"></span>
+            </div>
+        <script> 
+            var messagem = "{{mensagem}}"
+            var status = "{{status}}"
+
+            function displayPopup (){
+                var popup = document.getElementById("popup")
+                var popupMensagem  = document.getElementById("popupMensagem")
+
+                popupMensagem.textContent = mensagem
+                popupMensagem.className = "popup" + status
+                popupMensagem.style.display = "block"
+                
+                SetTimeout(function(){
+                    popup.style.display = "none";
+                }, 5000);
+            }
+
+            window.onload = function (){
+                if (mensagem !== ""){
+                    displayPopup(mensagem, status);
+            }
+        </script>    
+    </body>
+</html>
+
