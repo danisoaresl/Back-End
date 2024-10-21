@@ -5,3 +5,6 @@ include/
 .env
 *.pyc
 __pycache__/
+Django-Administrative-Tasks/lib/python3.11/site-packages/
+Flask-Recaptcha-Form-Submission/myenv/
+
